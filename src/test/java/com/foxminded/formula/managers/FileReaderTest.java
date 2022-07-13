@@ -24,13 +24,13 @@ class FileReaderTest {
 
 	@Test
 	void testCheckingEmptyFile_ShouldThrowException_WhenFileIsEmpty() {
-		reader.setAbbreviations(getClass().getClassLoader().getResource("abbreviationEmpty.txt"));
+		reader.setAbbreviations("abbreviationEmpty.txt");
 		assertThrows(IllegalArgumentException.class, () -> reader.getRacersFromFile());
 	}
 
 	@Test
 	void parseRacersFromFile_ShouldReturnListOfRacers_WhenGivenFileWithRacers() {
-		reader.setAbbreviations(getClass().getClassLoader().getResource("abbreviationsTest.txt"));
+		reader.setAbbreviations("abbreviationsTest.txt");
 		List<Racer> actual = reader.getRacersFromFile();
 		List<Racer> expected = Arrays.asList(
 				new Racer("DRR", "Daniel Ricciardo", "RED BULL RACING TAG HEUER"),
@@ -40,7 +40,7 @@ class FileReaderTest {
 
 	@Test
 	void parseStartLogFromFile_ShouldReturnMapOfStartLog_WhenGivenFileWithStartLog() {
-		reader.setStartLog(getClass().getClassLoader().getResource("startTest.log"));
+		reader.setStartLog("startTest.log");
 		Map<String, Long> actual = reader.getStartTime();
 		Map<String, Long> expected = new HashMap<String, Long>();
 		expected.put("SVF", 1527152578917L);
@@ -50,7 +50,7 @@ class FileReaderTest {
 
 	@Test
 	void parseEndtLogFromFile_ShouldReturnMapOfEndLog_WhenGivenFileWithEndLog() {
-		reader.setEndLog(getClass().getClassLoader().getResource("endTest.log"));
+		reader.setEndLog("endTest.log");
 		Map<String, Long> actual = reader.getEndTime();
 		Map<String, Long> expected = new HashMap<String, Long>();
 		expected.put("SVF", 1527152643332L);

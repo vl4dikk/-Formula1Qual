@@ -2,7 +2,6 @@ package com.foxminded.formula.managers;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -23,18 +22,18 @@ public class FileReader {
 	private File start;
 	private File end;
 	private final static DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss.SSS");
+	private ClassLoader classLoader = getClass().getClassLoader();
 
-	public void setAbbreviations(URL url) {
-		File file = new File(url.getFile());
-		this.abbreviations = file;
+	public void setAbbreviations(String file) {
+		this.abbreviations = new File(classLoader.getResource(file).getFile());
 	}
 
-	public void setStartLog(URL url) {
-		this.start = new File(url.getFile());
+	public void setStartLog(String file) {
+		this.start = new File(classLoader.getResource(file).getFile());
 	}
 
-	public void setEndLog(URL url) {
-		this.end = new File(url.getFile());
+	public void setEndLog(String file) {
+		this.end = new File(classLoader.getResource(file).getFile());
 	}
 
 	public List<Racer> getRacersFromFile() {

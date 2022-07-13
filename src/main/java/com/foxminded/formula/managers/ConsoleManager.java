@@ -11,16 +11,15 @@ public class ConsoleManager {
 	private TableFormatter table = new TableFormatter();
 	private FileReader reader = new FileReader();
 	private RacersResolver resolver = new RacersResolver(reader);
-	private ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 	
 	public void run() throws IOException {
 		try(InputStreamReader streamReader = new InputStreamReader(System.in);
 		BufferedReader bufferedReader = new BufferedReader(streamReader);) {
 		try {
 
-			reader.setAbbreviations(classLoader.getResource("abbreviations.txt"));
-			reader.setEndLog(classLoader.getResource("end.log"));
-			reader.setStartLog(classLoader.getResource("start.log"));
+			reader.setAbbreviations("abbreviations.txt");
+			reader.setEndLog("end.log");
+			reader.setStartLog("start.log");
 			System.out.println("Formatting result table:\n");
 			System.out.println(table.formatTable(resolver.createListOfRacers()));
 
