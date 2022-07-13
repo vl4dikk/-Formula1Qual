@@ -22,6 +22,7 @@ public class FileReader {
 	private File abbreviations;
 	private File start;
 	private File end;
+	private final static DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss.SSS");
 
 	public void setAbbreviations(URL url) {
 		File file = new File(url.getFile());
@@ -67,8 +68,7 @@ public class FileReader {
 			dataFromFile = Files.readAllLines(Paths.get(file.getAbsolutePath()));
 			result = dataFromFile.stream().collect(Collectors.toMap(key -> key.substring(0, 3), value -> {
 				String date = value.substring(3);
-				LocalDateTime localDateTime = LocalDateTime.parse(date,
-						DateTimeFormatter.ofPattern("yyyy-MM-dd_HH:mm:ss.SSS"));
+				LocalDateTime localDateTime = LocalDateTime.parse(date, DATE_PATTERN);
 				return localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
 			}));
 		} catch (IOException e) {

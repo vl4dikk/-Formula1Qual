@@ -11,9 +11,14 @@ import com.foxminded.formula.models.Racer;
 
 public class RacersResolver {
 
+	private FileReader reader;
 
-	public List<Racer> createListOfRacers(FileReader reader){
-		Map<String, Long> lapTime = calculateLapTime(reader);
+	public RacersResolver(FileReader reader) {
+		this.reader = reader;
+	}
+
+	public List<Racer> createListOfRacers() {
+		Map<String, Long> lapTime = calculateLapTime();
 		return reader.getRacersFromFile().stream()
 				.map(racer -> {
 					racer.setLapTime(lapTime.get(racer.getAbbreviation()));
@@ -23,7 +28,7 @@ public class RacersResolver {
 				.collect(Collectors.toList());
 	}
 
-	private Map<String, Long> calculateLapTime(FileReader reader){
+	private Map<String, Long> calculateLapTime() {
 		return Stream.of(reader.getEndTime(), reader.getStartTime())
 				.map(Map::entrySet)
 				.flatMap(Collection::stream)

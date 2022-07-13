@@ -9,8 +9,8 @@ import com.foxminded.formula.formatters.TableFormatter;
 public class ConsoleManager {
 	
 	private TableFormatter table = new TableFormatter();
-	private RacersResolver resolver = new RacersResolver();
 	private FileReader reader = new FileReader();
+	private RacersResolver resolver = new RacersResolver(reader);
 	private ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 	
 	public void run() throws IOException {
@@ -22,7 +22,7 @@ public class ConsoleManager {
 			reader.setEndLog(classLoader.getResource("end.log"));
 			reader.setStartLog(classLoader.getResource("start.log"));
 			System.out.println("Formatting result table:\n");
-			System.out.println(table.formatTable(resolver.createListOfRacers(reader)));
+			System.out.println(table.formatTable(resolver.createListOfRacers()));
 
 		} catch (Exception ex) {
 			System.out.println("Error has been occured: " + ex.getLocalizedMessage());
