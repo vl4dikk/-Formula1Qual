@@ -4,7 +4,7 @@
 	<artifactId>Formula1Qual</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>racers-table</name>
-	<description>Application for converting of racing results</description>
+	<description>Application for convertion of racing results</description>
 
 	<properties>
 		<maven.compiler.target>17</maven.compiler.target>
@@ -32,7 +32,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

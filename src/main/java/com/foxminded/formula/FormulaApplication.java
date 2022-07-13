@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.foxminded.formula.managers.ConsoleManager;
 
+
 public class FormulaApplication {
 
 	public static void main(String[] args) throws IOException {
