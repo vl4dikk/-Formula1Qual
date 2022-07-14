@@ -1,7 +1,6 @@
 package com.foxminded.formula.managers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,12 +19,6 @@ class FileReaderTest {
 	@AfterEach
 	void afterEach() {
 		reader = new FileReader();
-	}
-
-	@Test
-	void testCheckingEmptyFile_ShouldThrowException_WhenFileIsEmpty() {
-		reader.setAbbreviations("abbreviationEmpty.txt");
-		assertThrows(IllegalArgumentException.class, () -> reader.getRacersFromFile());
 	}
 
 	@Test
